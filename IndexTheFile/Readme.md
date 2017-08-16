@@ -1,6 +1,8 @@
 About this program:
 
-The program takes a file as an argument, parses it and output an "index" file. The index file contains all the words the file has in a dictionary order and near each word you can find all the line numbers that the word appears in the original file
+Written in C90.
+
+The program takes a file as an argument, parses it and output an "index" file. The index file contains all the words in the file arranged in a dictionary order with the line numbers that the word appears in the original file near each word.
 
 * Note that the program does not count "how many times a word appears" since it ignores the second appearance of the same word in the same line.
 

@@ -1,0 +1,36 @@
+Formatting takes place via placeholders within the format string. For example, if a program wanted to print out a person's age, it could present the output by prefixing it with "Your age is ". To denote that we want the integer for the age to be shown immediately after that message, we may use the format string:
+"Your age is %d."
+Syntax[edit]
+The syntax for a format placeholder is
+%[parameter][flags][width][.precision][length]type
+Parameter field[edit]
+This is a POSIX extension and not in C99. The Parameter field can be omitted or can be:
+Character	Description
+n$	n is the number of the parameter to display using this format specifier, allowing the parameters provided to be output multiple times, using varying format specifiers or in different orders. If any single placeholder specifies a parameter, all the rest of the placeholders MUST also specify a parameter.
+For example, printf("%2$d %2$#x; %1$d %1$#x",16,17) produces 17 0x11; 16 0x10.
+Flags field[edit]
+The Flags field can be zero or more (in any order) of:
+Character	Description
+-
+(minus)	Left-align the output of this placeholder. (The default is to right-align the output.)
++
+(plus)	Prepends a plus for positive signed-numeric types. positive = +, negative = -.
+(The default doesn't prepend anything in front of positive numbers.)
+ 
+(space)	Prepends a space for positive signed-numeric types. positive =  , negative = -. This flag is ignored if the + flag exists.
+(The default doesn't prepend anything in front of positive numbers.)
+0
+(zero)	When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.)
+For example, printf("%2X",3) produces  3, while printf("%02X",3) produces in 03.
+#
+(hash)	Alternate form:
+For g and G types, trailing zeros are not removed.
+For f, F, e, E, g, G types, the output always contains a decimal point.
+For o, x, X types, the text 0, 0x, 0X, respectively, is prepended to non-zero numbers.
+Width field[edit]
+The Width field specifies a minimum number of characters to output, and is typically used to pad fixed-width fields in tabulated output, where the fields would otherwise be smaller, although it does not cause truncation of oversized fields.
+The width field may be omitted, or a numeric integer value, or a dynamic value when passed as another argument when indicated by an asterisk *. For example, printf("%*d", 5, 10) will result in    10 being printed, with a total width of 5 characters.
+Though not part of the width field, a leading zero is interpreted as the zero-padding flag mentioned above, and a negative value is treated as the positive value in conjunction with the left-alignment - flag also mentioned above.
+Precision field[edit]
+The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type. For floating point numeric types, it specifies the number of digits to the right of the decimal point that the output should be rounded. For the string type, it limits the number of characters that should be output, after which the string is truncated.
+The precision field may be omitted, or a numeric integer value, or a dynamic value when passed as another argument when indicated by an asterisk *. For example, printf("%.*s", 3, "abcdef") will result in abc being printed.
